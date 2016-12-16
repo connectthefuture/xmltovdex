@@ -60,13 +60,10 @@ class XMLtoVDEX:
 
     def create_node(self, parent_priref, record):
 
-        # get parent_priref level
-        # get record details    
         details = {}
         details["termIdentifier"] = record.find('priref').text
         details["name"] = record.find('scientific_name').text
         
-        # create_term in that level
         if parent_priref != 0:
             parent = self.vdexmanager.getTermById(parent_priref)
         else:
@@ -89,8 +86,6 @@ class XMLtoVDEX:
         record = self.find_record_by_priref(priref)
         result = []
         
-        # Go through all the childs
-        # Create node from parent_priref
         if priref not in self.created_notes:
             if parent_priref == None:
                 self.create_node(0, record)
